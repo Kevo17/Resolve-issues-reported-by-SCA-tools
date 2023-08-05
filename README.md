@@ -19,8 +19,9 @@ In this lab, participants will learn how to effectively resolve issues reported 
 <h2>Program walk-through:</h2>
 
 First, we need to download the source code of the project from our git repository: <br/>
-- git clone https://gitlab.practical-devsecops.training/pdso/django.nv webapp<br/>
- 
+```
+git clone https://gitlab.practical-devsecops.training/pdso/django.nv webapp
+```
 <p align="center">
 <img src="https://i.imgur.com/bNs1t00.png" height="80%" width="80%" alt="Disk Sanitization Step"/>
 </p>
@@ -29,8 +30,9 @@ First, we need to download the source code of the project from our git repositor
 <br />
 
 Lets cd into the application code, so we can scan the app: <br/>
-- cd webapp<br/>
- 
+```
+cd webapp
+``` 
 <p align="center">
 <img src="https://i.imgur.com/31y2TU2.png" height="80%" width="80%" alt="Disk Sanitization Step"/>
 </p>
@@ -39,8 +41,9 @@ Lets cd into the application code, so we can scan the app: <br/>
 <br />
 
 Let’s install the safety tool on the system to scan the python dependencies: <br/>
-- pip3 install safety==2.3.5<br/>
- 
+```
+pip3 install safety==2.3.5
+``` 
 <p align="center">
 <img src="https://i.imgur.com/0zZCyYs.png" height="80%" width="80%" alt="Disk Sanitization Step"/>
 </p>
@@ -49,8 +52,9 @@ Let’s install the safety tool on the system to scan the python dependencies: <
 <br />
 
 Lets explore what options safety provides us: <br/>
-- safety check --help<br/>
- 
+```
+safety check --help
+``` 
 <p align="center">
 <img src="https://i.imgur.com/XRxRU3S.png" height="80%" width="80%" alt="Disk Sanitization Step"/>
 </p>
@@ -58,9 +62,10 @@ Lets explore what options safety provides us: <br/>
 <br />
 <br />
 
-We are using the tee command to show the output and store it in a file simultaneously: <br/>
-- safety check -r requirements.txt --json | tee safety-output.json<br/>
- 
+Let’s run the scanner. We are using the tee command to show the output and store it in a file simultaneously: <br/>
+```
+safety check -r requirements.txt --json | tee safety-output.json
+``` 
 <p align="center">
 <img src="https://i.imgur.com/p67RuJr.png" height="80%" width="80%" alt="Disk Sanitization Step"/>
 </p>
@@ -70,7 +75,7 @@ We are using the tee command to show the output and store it in a file simultane
 
 To fix these issues, we would need to see what components are installed in the system by having a look at requirements.txt file: <br/>
 ```
-- cat requirements.txt<br/>
+cat requirements.txt
 ``` 
 <p align="center">
 <img src="https://i.imgur.com/mErtNMv.png" height="80%" width="80%" alt="Disk Sanitization Step"/>
@@ -81,9 +86,9 @@ To fix these issues, we would need to see what components are installed in the s
 
 Edit the requirements.txt file to use version 3.2: <br/>
 ```
-- cat >requirements.txt<<EOF
-  Django==3.2
-  EOF
+cat >requirements.txt<<EOF
+Django==3.2
+EOF
 ```  
   <br/>
  
@@ -96,7 +101,7 @@ Edit the requirements.txt file to use version 3.2: <br/>
 
 Let’s run the scanner once again: <br/>
 ```
-- safety check -r requirements.txt --json | tee safety-output.json
+safety check -r requirements.txt --json | tee safety-output.json
 ```
 <br/>
 <p align="center">
